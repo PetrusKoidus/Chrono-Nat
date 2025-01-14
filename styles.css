@@ -1,0 +1,134 @@
+/* Style général pour la page */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #e6f7ff; /* Couleur douce pour le fond */
+}
+
+/* Style du cadran de l'horloge */
+.clock {
+    position: relative;
+    width: 400px; /* Taille du cadran */
+    height: 400px;
+    border: 10px solid #002766; /* Bordure bleue */
+    border-radius: 50%; /* Cercle parfait */
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Style des aiguilles */
+.hand {
+    position: absolute;
+    width: 24px; /* Largeur constante */
+    height: 180px; /* Longueur de l'aiguille */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform-origin: bottom center;
+    transform: translate(-50%, 0) rotate(0deg); /* Ajustement initial */    
+    background-color: inherit; /* La couleur sera héritée (par exemple, rouge, bleu) */
+    clip-path: polygon(50% 0%, 100% 90%, 0% 90%); /* Forme triangulaire */
+}
+
+.hand.red {
+    background-color: red;
+}
+
+.hand.yellow {
+    background-color: yellow;
+}
+
+.hand.black {
+    background-color: black;
+}
+
+.hand.green {
+    background-color: green;
+}
+
+/* Style pour le centre du cadran */
+.center {
+    position: absolute;
+    width: 20px; /* Diamètre du cercle central */
+    height: 20px;
+    background-color: black;
+    border-radius: 50%; /* Cercle parfait */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Correction exacte du centrage */
+}
+
+/* Style des graduations */
+.graduation {
+    position: absolute;
+    top: 0%; /* Centrer verticalement autour du cadran */
+    left: 49.15%; /* Centrer horizontalement autour du cadran */
+    transform-origin: 50% 200px; /* Ajuste le point de rotation selon le rayon du cercle */
+    transform: rotate(0deg); /* Rotation initiale de chaque graduation */
+}
+
+.graduation.small {
+    width: 2px; /* Petite largeur */
+    height: 16px; /* Hauteur des petites graduations */
+    background-color: black;
+}
+
+.graduation.large {
+    width: 8px; /* Grande largeur */
+    height: 26px; /* Hauteur des grandes graduations */
+    background-color: black;
+}
+
+/* Style des chiffres sur les grandes graduations */
+.graduation.large[data-time="0"]::after,
+.graduation.large[data-time="10"]::after,
+.graduation.large[data-time="20"]::after,
+.graduation.large[data-time="30"]::after,
+.graduation.large[data-time="40"]::after,
+.graduation.large[data-time="50"]::after {
+    font-size: 24px; /* Taille augmentée pour ces chiffres */
+    font-weight: bold; /* Gras pour une meilleure lisibilité */
+    color: red/* Couleur (facultatif) */
+}
+
+.graduation.large::after {
+    content: attr(data-time); /* Texte pour les grandes graduations */
+    position: absolute;
+    font-size: 20px; /* Taille par défaut pour les autres chiffres */
+    font-weight: bold;
+    color: black;
+    top: -40px; /* Position au-dessus du cercle */
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.graduation.large::after {
+    content: attr(data-time); /* Texte pour les grandes graduations */
+    position: absolute;
+    font-size: 14px; /* Taille de police des chiffres */
+    font-weight: bold; /* Texte en gras */
+    color: black; /* Couleur des chiffres */
+    top: 30px; /* Décalage vertical pour placer les numéros au-dessus du cercle */
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/* Style du bouton "Reset" */
+#reset-button {
+    margin-top: 50px; /* Espacement au-dessus du bouton */
+    padding: 10px 20px; /* Taille du bouton */
+    font-size: 16px; /* Taille du texte */
+    background-color: red; /* Couleur rouge */
+    color: white; /* Couleur du texte */
+    border: none; /* Supprime les bordures */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en forme de main */
+}
+
+#reset-button:hover {
+    background-color: #0050b3; /* Couleur plus claire au survol */
+}
